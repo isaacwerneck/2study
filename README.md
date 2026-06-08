@@ -1,2 +1,2 @@
 # to-study
-things i need to sty
+things i need to see or review
