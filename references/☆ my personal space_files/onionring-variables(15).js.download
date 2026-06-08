@@ -1,0 +1,89 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var sites = [
+'https://huroncelestial.neocities.org',
+'https://marcheesed.xyz/',
+'https://edgyrabbid.space/',
+'https://pastel-skies.nekoweb.org/',
+'https://corvidae.digital/',
+'https://thegreatpretender02.neocities.org',
+'https://kimt1nez.neocities.org',
+'https://soulkuiro.neocities.org/',
+'https://toonilumi.neocities.org/',
+'https://demisdesignart.neocities.org/',
+'https://sunnishinez.neocities.org/',
+'https://weirdo.nekoweb.org/',
+'https://thekittyburger.neocities.org/',
+'https://drfred.nekoweb.org',
+'https://valentines-archive.neocities.org/',
+'https://cerealandchoccymilk.neocities.org',
+'https://smugwolf.neocities.org/',
+'https://mattware.nekoweb.org/',
+'https://julian.nekoweb.org',
+'https://jack-dawlia.neocities.org/page/shrines/sonic',
+'https://nickychaotix.neocities.org',
+'https://platinumspooky.nekoweb.org/',
+'https://ytpdomo711.neocities.org',
+'https://splaatandfriends.neocities.org/HomePage',
+'https://medaablog.neocities.org/',
+'https://stilesverse.neocities.org/',
+'https://hellokittyminigun.neocities.org/',
+'https://keiism.nekoweb.org/',
+'https://kitsunekashi.nekoweb.org/',
+'https://termotanquedeleche.neocities.org/'
+];
+
+var favC = [
+'https://huroncelestial.neocities.org/index/favs/amy.png',
+'https://huroncelestial.neocities.org/index/favs/Blaze.png',
+'https://huroncelestial.neocities.org/index/favs/knuckles.png',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/Tails.gif',
+'https://huroncelestial.neocities.org/index/favs/Silver.png',
+'https://huroncelestial.neocities.org/index/favs/Msonic.png',
+'https://huroncelestial.neocities.org/index/favs/knuckles.png',
+'https://huroncelestial.neocities.org/index/favs/Blaze.png',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/Msonic.png',
+'https://huroncelestial.neocities.org/index/favs/Silver.png',
+'https://huroncelestial.neocities.org/index/favs/Shadow.png',
+'https://huroncelestial.neocities.org/index/favs/Shadow.png',
+'https://huroncelestial.neocities.org/index/favs/Shadow.png',
+'https://huroncelestial.neocities.org/index/favs/Shadow.png',
+'https://huroncelestial.neocities.org/index/favs/Mephiles.png',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/Tails.gif',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/sage.png',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/Msonic.png',
+'https://huroncelestial.neocities.org/index/favs/sonic.png',
+'https://huroncelestial.neocities.org/index/favs/Eclipse.png',
+'https://huroncelestial.neocities.org/index/favs/Msonic.png',
+'https://huroncelestial.neocities.org/index/favs/Blaze.png',
+'https://huroncelestial.neocities.org/index/favs/Shadow.png',
+'https://huroncelestial.neocities.org/index/favs/Bunnie.png',
+'https://huroncelestial.neocities.org/index/favs/Tails.gif'
+];
+
+//the name of the ring
+var ringName = 'Little Planet';
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = 'sogma';
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = 'https://huroncelestial.neocities.org/littleplanet';
+
+//should the widget include a random button?
+var useRandom = true;

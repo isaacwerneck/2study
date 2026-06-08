@@ -1,0 +1,12 @@
+{
+  "name": "2study",
+  "version": "1.0.0",
+  "description": "Personal study tracker with backend storage and login",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.4"
+  }
+}

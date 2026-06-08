@@ -1,0 +1,26 @@
+var tag = document.getElementById(ringID);
+thisSite = window.location.href;
+thisIndex = null;
+for (i = 0; i < sites.length; i++) {
+  if (thisSite.startsWith(sites[i])) {
+    thisIndex = i;
+    break;
+  }
+}
+if (thisIndex == null) {
+  tag.insertAdjacentHTML(
+    "afterbegin",
+    `note to self: update ${ringName} information!`
+  );
+} else {
+  previousIndex = thisIndex - 1 < 0 ? sites.length - 1 : thisIndex - 1;
+  nextIndex = thisIndex + 1 >= sites.length ? 0 : thisIndex + 1;
+  indexText = "";
+  if (useIndex) {
+    indexText = `<a href='https://evanescencering.nekoweb.org/' target='_blank'>EvRing</a>`;
+  }
+  tag.insertAdjacentHTML(
+    "afterbegin",
+    `<a href='${sites[previousIndex]}' target='_blank'>←</a> <a href='https://evanescencering.nekoweb.org/' target='_blank'>EvRing</a> <a href='${sites[nextIndex]}' target='_blank'>→</a>`
+  );
+}

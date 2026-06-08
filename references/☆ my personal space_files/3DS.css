@@ -1,0 +1,25 @@
+.HBRlogo {
+  height: 90px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 4px;
+}
+
+.HBRarrow {
+  height: 90px;  
+}
+
+.HBRrandom {
+  color: #ACF7FF !important;
+  text-shadow: #001F86 2px 0px 0px, #001F86 1.75517px 0.958851px 0px, #001F86 1.0806px 1.68294px 0px, #001F86 0.141474px 1.99499px 0px, #001F86 -0.832294px 1.81859px 0px, #001F86 -1.60229px 1.19694px 0px, #001F86 -1.97999px 0.28224px 0px, #001F86 -1.87291px -0.701566px 0px, #001F86 -1.30729px -1.51361px 0px, #001F86 -0.421592px -1.95506px 0px, #001F86 0.567324px -1.91785px 0px, #001F86 1.41734px -1.41108px 0px, #001F86 1.92034px -0.558831px 0px; /*stolen from vocaloid webring because hell if i'm doing this manually lol*/
+  font-size: 1.2em;
+  text-decoration: none;
+  font-family: "Winky Sans";
+  display: block;
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'Winky Sans';
+  src: url(https://fonts.gstatic.com/s/winkysans/v1/ll85K2SDUiG1Hpf2p06bN60okw.woff2) format('woff2');
+}

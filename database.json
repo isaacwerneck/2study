@@ -1,0 +1,12 @@
+{
+  "users": {
+    "isaac": {
+      "password": "pexe",
+      "token": "cbd7ee19290e24257bf21f60d19a8414262b75c87b97a0e9",
+      "tasks": [],
+      "createdAt": 1780931299129,
+      "updatedAt": 1780938285847
+    }
+  },
+  "currentUser": "isaac"
+}

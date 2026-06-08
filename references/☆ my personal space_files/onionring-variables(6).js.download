@@ -1,0 +1,105 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var sites = [
+'https://skyhold.org/adhd/',
+'https://moxiemoshpit.com/',
+'https://cosy-diner.nekoweb.org/',
+'https://foreverliketh.is/',
+'https://squidcrusher.neocities.org/',
+'https://prophetesque.gay/',
+'https://corvidae.digital/',
+'https://missymjwrites.neocities.org/',
+'https://updown.city/',
+'https://sammylux.neocities.org/',
+'https://manyface.neocities.org/',
+'https://cherie.nekoweb.org/',
+'https://metaparadox.neocities.org/',
+'https://femishonuga.com/',
+'https://zombiethederg.neocities.org/SiteMap',
+'https://july.lol/',
+'https://beaus-silly-folder.nekoweb.org/',
+'https://mintchipdotcom.neocities.org/',
+'https://aevuslabyrinth.neocities.org/',
+'https://featherfae.neocities.org/',
+'https://wenkicai.neocities.org/home',
+'https://buster.nekoweb.org/',
+'https://floraltriptych.nekoweb.org/',
+'https://dynazenta.neocities.org/',
+'https://nightmarefantasmic.neocities.org/',
+'https://uwu.gal/about-us',
+'https://xan.lol/',
+'https://samunderadhikari.neocities.org/',
+'https://zealsify.neocities.org',
+'https://soursweet.neocities.org/',
+'https://oopsano.neocities.org/',
+'https://pastel-skies.nekoweb.org/',
+'https://blueys-site.neocities.org/',
+'https://zhongvie.neocities.org/',
+'http://voidway.nekoweb.org/',
+'https://necrodancing.neocities.org/',
+'https://bibliohound.neocities.org/',
+'https://drmollytov.neocities.org/',
+'https://transrats.neocities.org/',
+'https://petricor.neocities.org/',
+'https://lizyness.fr/',
+'https://gloomymort.neocities.org/Home',
+'https://talesfromthestars.ink/',
+'https://raymondtheterrible.neocities.org/home',
+'https://kimt1nez.neocities.org/',
+'https://scaremevalerine.neocities.org/',
+'https://simplyjason.neocities.org/About/webrings',
+'https://baggebo-the-goober.neocities.org/',
+'https://babywormcore.baby/',
+'https://possumlark.org/',
+'https://coyotelucille.com/',
+'https://april.nekoweb.org/',
+'https://anhedonister.neocities.org/awesomeness',
+'https://ructoon.neocities.org/',
+'http://thecheesespot.xyz/',
+'https://northomecavern.neocities.org/',
+'https://minxie.likesyou.org/',
+'https://raster.foo.ng/',
+'https://dipps.neocities.org/',
+'https://badfaith.neocities.org/',
+'https://winston-oscar-elliot.nekoweb.org/',
+'https://mossfool.neocities.org',
+'https://tilde.club/~christa',
+'https://frutigeraeroarchive.org/other_links',
+'https://www.experimental-aurora.blogspot.com/',
+'https://astarrydeath.com/',
+'https://dreadheadhippy.space/',
+'https://personal.marladian.uk/',
+'https://voidcat77.neocities.org/',
+'https://kamirose.neocities.org/',
+'https://guszone.neocities.org/',
+'https://retroglassbox.neocities.org/about/',
+'https://splatterautopsy.neocities.org/',
+'https://ynklingv.neocities.org/',
+'https://claranguyen.me/',
+'https://starlit-catastrophe.neocities.org/',
+'https://fireye.coffee',
+'https://hamsite.lol/',
+'https://skyhold.org/'
+];
+
+//the name of the ring
+var ringName = 'ADHMe';
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = 'adhdring';
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = 'https://skyhold.org/adhd/';
+
+//should the widget include a random button?
+var useRandom = false;

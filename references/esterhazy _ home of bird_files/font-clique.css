@@ -1,0 +1,19 @@
+@font-face {
+    font-family:'madamoiselle'; 
+    src: url('madamoiselle.otf');
+    }
+
+.font-clique{
+    font-family: 'madamoiselle';
+    text-transform: lowercase;
+    font-size: 1.3em;
+}
+
+a.font-clique-link:link, a.font-clique-link:visited{
+    color: #fc72a0;
+    text-decoration: none;
+}
+
+a.font-clique-link:hover, a.font-clique-link:focus, a.font-clique-link:active{
+    color: #ffc664!important;
+}

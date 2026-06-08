@@ -1,0 +1,82 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var sites = [
+'https://nova-dergs.neocities.org/',
+'https://nova-dergs.nekoweb.org/',
+'https://dreamdragon.neocities.org/',
+'https://theriversystem.neocities.org/',
+'https://dragonsroost.neocities.org/',
+'https://gl1tz1.monster/',
+'https://interstellarsystem.neocities.org/',
+'https://ballonlea.net/',
+'https://liondrakes.neocities.org/',
+'https://shadowfae.neocities.org/',
+'https://gze.neocities.org/',
+'https://falconiforme.neocities.org/',
+'https://petrichoran.wtf/',
+'https://sparkssystem.neocities.org/',
+'http://pineisland.neocities.org/',
+'https://whiskerprogram.neocities.org/',
+'https://chirp-bark-hey.neocities.org/',
+'https://wondertrade.neocities.org/',
+'https://socsie.space/',
+'https://tesseractcube.neocities.org/',
+'https://vincent2077.neocities.org/',
+'https://prehistory.neocities.org/',
+'https://braigwen.neocities.org',
+'https://koyanthrope.neocities.org/',
+'https://liquid-sunshine.neocities.org/',
+'https://poppyhapalopus.neocities.org/',
+'https://talonswarpedforest.neocities.org/',
+'https://crittershowcircus.neocities.org/',
+'https://wheelersfanfic.neocities.org/home',
+'https://gillmansreadingroom.neocities.org/',
+'https://crystalkismet.neocities.org/',
+'https://draggianuniverse.neocities.org/',
+'https://hexaitos.com/',
+'https://themanyvoices.neocities.org/',
+'https://scrapes-and-bruises.neocities.org/',
+'https://sunnishinez.neocities.org/',
+'https://fallen-and-holy.neocities.org/',
+'https://watchers-archive.neocities.org/',
+'https://highway-signs-and-ferry-lines.neocities.org/',
+'https://novalite.rest/',
+'https://brshbgs.neocities.org/',
+'https://canineanarchy.dog/',
+'https://turntechgethead.neocities.org/',
+'https://windowserrormessagesystem.neocities.org/',
+'https://tamedbythecrow.neocities.org/',
+'https://dolly.baby',
+'https://ren-journal.neocities.org/',
+'https://syzygys.neocities.org',
+'https://www.luvan.org/betenoire/',
+'https://tsune.nekoweb.org/',
+'https://eloise-taulner.neocities.org/',
+'https://hskin.org/',
+'https://ainoakuu.neocities.org/',
+'https://corvidae.digital/',
+'https://starsurgeserver.neocities.org/',
+'https://akan-sashasolaya.neocities.org/'
+];
+
+//the name of the ring
+var ringName = 'Fictionfolk';
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = 'fictionfolk';
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = 'https://nova-dergs.neocities.org/';
+
+//should the widget include a random button?
+var useRandom = true;

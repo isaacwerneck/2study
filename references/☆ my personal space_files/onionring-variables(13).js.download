@@ -1,0 +1,501 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var sites = [
+  // ['website.com','John Doe', 'This is John Doe's awesome website' ]
+  [
+    "https://webring.nekoweb.org/",
+    "Webring Site <em>main site</em>",
+    "The website you are on right now!",
+  ],
+  [
+    "https://maxpixels.moe/",
+    "Max <em>manager</em>",
+    "idiot web developer who tries to do things whenever i can, im also the manager of this webring!",
+  ],
+  ["https://glitchy404.nekoweb.org/", "Glitchy"],
+  [
+    "https://wiki.nekoweb.org/",
+    "Dean/DeanTheExtreme",
+    "The Nekoweb Wiki, documenting the free static web hosting Nekoweb.",
+  ],
+  [
+    "https://nullcell.neocities.org/",
+    "null",
+    "piece of art a result of cool wisdom I possess. Everything is mostly variable bcoz I am interested in various fields.",
+  ],
+  [
+    "https://lilith.nekoweb.org/",
+    "Lilith",
+    "WIP personal website. I plan to talk about things I am interested in",
+  ],
+  [
+    "https://gif.nekoweb.org/",
+    "hk",
+    "A dump of my thoughts, images, music and most importantly gifs!",
+  ],
+  [
+    "https://silas.nekoweb.org/",
+    "silas",
+    "the personal website of a queer transfag furby guy. ft. webdev bookmarks and more!",
+  ],
+  [
+    "https://tou.nekoweb.org/",
+    "ThatOneUnoriginal",
+    "A personal website for my online personality.",
+  ],
+  [
+    "https://pyralspyte.nekoweb.org/",
+    "gabriel",
+    "the funny silly place.. just my personal site ^_^",
+  ],
+  [
+    "https://raze3344.nekoweb.org/",
+    "raze3344",
+    "yo how do we use these &lt;div&gt; tags :P cuz i wanna do some cool stuff like u ^^",
+  ],
+  [
+    "https://piinro.nekoweb.org/",
+    "Starr",
+    "My site is a place to put random stuff I make ranging from an I.S.S. tracker to a flipnote still gallery, and more!",
+  ],
+  [
+    "https://angelnetcast.nekoweb.org/",
+    "angel",
+    "a custom website for personal and fan content!",
+  ],
+  ["https://fish.nekoweb.org/", "?", "?"],
+  [
+    "https://lilly.nekoweb.org/",
+    "lilly",
+    "personal site!!! theres konata and cool tunes and stamps and kitties!!!",
+  ],
+  [
+    "https://laura.nekoweb.org/",
+    "Laura Sofia",
+    "A silly trans hobby game dev and 15 year long web dev trying to be more unhinged when it comes to websites on my new page.",
+  ],
+  [
+    "https://s1nez.nekoweb.org/",
+    "ren",
+    "im gay for v2 *fire writing gif* also i draw and animate and make music sometimes i guessss also im a sparklefur",
+  ],
+  [
+    "https://angle.nekoweb.org/",
+    "angle",
+    "a personal site inspired by a geometry dash level.. Made to share whatever i feel like",
+  ],
+  [
+    "https://picea.nekoweb.org/",
+    "kat",
+    "a storage closet for all my old projects. and other stuff too idk",
+  ],
+  ["https://lain.nekoweb.org/", "?", "?"],
+  /*
+  [
+    "https://calico.nekoweb.org",
+    "Seer",
+    "Just a little corner of the web where an abnormal cornish rex cat shares his thoughts and talks about things he likes!!",
+  ],*/
+  [
+    "https://apfel.nekoweb.org/me/",
+    "Ocram Ratte",
+    "A site that features an about me section, status, links and updates on my projects.",
+  ],
+  ["https://wynn.nekoweb.org/", "toa", "hi I'm toa and i like art and my OCs!"],
+  [
+    "https://autumn.nekoweb.org/",
+    "autumn",
+    'its my message in a bottle within the sea of messages in bottles. quick rundown of who i may be n wha i like to do n whatever may be "new" with me',
+  ],
+  [
+    "https://corvidae.digital/",
+    "corvidae",
+    "this is my personal site where i cram as many things as i want into a compact little box :3 i share my creations, blogs, resource lists, graphics hoards, and more in here!",
+  ],
+  ["https://green.nekoweb.org/", "Green", "website for my stuff mainly :)"],
+  ["https://remblanc.com/", "remblanc 1.x", "the personal website of all time"],
+  [
+    "https://pe3rl.nekoweb.org/",
+    "Pe3RL",
+    "dude i dont even know what html is i am frankensteining this shit together and praying it functions even slightly",
+  ],
+  ["https://valley.nekoweb.org/", "?", "?"],
+  [
+    "https://lapislabel.net/",
+    "Lapis",
+    "A sailor’s trinket box showcasing art, video games and other things of the nature!",
+  ],
+  [
+    "https://evie.nekoweb.org/",
+    "Evie",
+    "a place for me to be both extremely queer <i>and</i> a terrible writer",
+  ],
+  ["https://woocat.nekoweb.org/", "woocat", "woocat webpage"],
+  ["https://nekocat.nekoweb.org/", "nekocat", "home of the nekoweb cat"],
+  [
+    "https://pure.nekoweb.org/",
+    "safiya",
+    "a virtual curation of beauty and love found in the world hand coded by an 18 year old fashion student",
+  ],
+  [
+    "https://wobbachu.nekoweb.org/",
+    "Wobbachu",
+    "The Wii-inspired personal website of artist Wobbachu, for your enjoyment, with a dash of pokémon for good measure!",
+  ],
+  ["https://jemmaontheweb.nekoweb.org/", "jemma", "Jemma, on the web"],
+  [
+    "https://astro.nekoweb.org/",
+    "Astro/AstroLumin",
+    "Random personal website full of cool stuff :)",
+  ],
+  [
+    "https://xan.nekoweb.org/",
+    "Xan on nekoweb",
+    "Has some music and text and links, including one to their own domain",
+  ],
+  [
+    "https://oposh.nekoweb.org/",
+    "Oposh",
+    "A personal site that belongs to opossum called Oposh",
+  ],
+  /*[
+    "https://april.nekoweb.org/",
+    "April",
+    "Personal site where i share my hobbies and other stuff",
+  ],*/
+  [
+    "https://mypillowfort.net/",
+    "Shai",
+    "A personal blog that offers over 3,000 cutesy graphics to you, the visitor, for free! Enjoy (´ ω `♡)",
+  ],
+  [
+    "https://crystal.nekoweb.org/",
+    "Crystal",
+    "Personal site for OCs and Hatsune Miku.",
+  ],
+  [
+    "https://vrz.nekoweb.org/",
+    "Astral",
+    "Astral's NekoWeb home page, always being worked on.",
+  ],
+  [
+    "https://squidcrusher.nekoweb.org/",
+    "Sam",
+    "Personal website for a queer blogger who is autistic and really wants to show you its pet sites",
+  ],
+  [
+    "https://octosquigglez.nekoweb.org/",
+    "OctoSquigglez",
+    "personal site filled to the brim with my hyperfixations (probably)",
+  ],
+  [
+    "https://nekoaerospace.nekoweb.org/",
+    "Neko CA",
+    "Personal website for a random neko who's really big into spaceflight and is trying to learn HTML",
+  ],
+  [
+    "https://blockpoint.nandraid.moe",
+    "raidopaizer",
+    "Third internet home of raid - A!",
+  ],
+  [
+    "https://lime360.nekoweb.org",
+    "lime360",
+    "Lime's personal website. Formerly hosted on Neocities.",
+  ],
+  [
+    "https://districts.nekoweb.org",
+    "Districts",
+    "Districts is a Nekoweb site directory (a pre-Y2k internet concept designed to help you more easily find webfronts by sorting them into relevant categories)!",
+  ],
+  [
+    "https://tepiloxtl.net/",
+    "Tepiloxtl @ Nekoweb",
+    "Personal site I tippy-tap on about tech or games or who knows what actually :)",
+  ],
+  [
+    "https://lel.nekoweb.org/",
+    "Lel's Cult",
+    "The most lelmaxxed site on nekoweb",
+  ],
+  [
+    "https://felixfever.nekoweb.org/",
+    "Felix FEVER",
+    "Shrine to Fix-It Felix, Jr.",
+  ],
+  ["https://suavesuede.nekoweb.org", "?", "?"],
+  [
+    "https://dariusaur.nekoweb.org/",
+    "LegenDarius",
+    'A personal site with multiple layers of irony and satire, so you can never truly know who "Darius" is.',
+  ],
+  [
+    "https://yummyicecream.nekoweb.org/",
+    "yummyicecream",
+    "a website that is kinda like the 1990s.",
+  ],
+  [
+    "https://frizzbees.dev/",
+    "bee",
+    "personal site which hosts my blog among some other things :3",
+  ],
+  [
+    "https://juno.nekoweb.org/",
+    "juno",
+    "deranged yuri + rhythm game fan headquarters",
+  ],
+  ["https://mved.nekoweb.org/", "guavasalt", "gup's sillay little aquarium"],
+  [
+    "https://quwyou.com/",
+    "quwyou",
+    "personal site lol. doesn't have much on it as of now",
+  ],
+  [
+    "https://aurath.nekoweb.org/",
+    "aurath",
+    "my personal site that has a non zero amount of tsumugi aoba because i love him",
+  ],
+  [
+    "https://lunya.nekoweb.org/",
+    "Akatsuki's website",
+    "My personal website, along with all my projects and nekosearch",
+  ],
+  ["https://penguinjaa.com/"],
+  ["https://realismomagico.nekoweb.org/"],
+  ["https://cherie.nekoweb.org/"],
+  ["https://fujoshi.nekoweb.org"],
+  //["https://"],
+  ["https://bufucat.nekoweb.org/"],
+  [
+    "https://theabsoluterealm.com/",
+    "shinto",
+    "my personal website that houses my happy place and mind space, varying around gaming, references, easter eggs, art, programming, and more!",
+  ],
+  ["https://iluvwerewolves.nekoweb.org"],
+  [
+    "https://housepen.nekoweb.org",
+    "Benggu",
+    "A personal site hosting my art, blog, and animal crossing obsession",
+  ],
+  /*
+  [
+    "https://rice.place/",
+    "ricebowl",
+    "think of this site as a bowl of rice with various meats on top and a hint of stir fried bok choy.",
+  ],*/
+  ["https://july.lol"],
+  [
+    "https://thinliquid.dev",
+    "thinliquid",
+    "overstimulating catppuccin-infused portfolio/personal website!",
+  ],
+  ["https://arti1688.nekoweb.org"],
+  ["https://reocities.nekoweb.org/"],
+  ["https://giikis2.nekoweb.org/"],
+  ["https://astralily.nekoweb.org/"],
+  [
+    "https://mixi.nekoweb.org/",
+    "Mixi",
+    `My small grim corner where light falls in Nekoweb where I hang up my stuff.`,
+  ],
+  ["https://effe-tei.nekoweb.org/"],
+  ["https://saurmandal.nekoweb.org/"],
+  ["https://caekpuppi.nekoweb.org/"],
+  /*["https://moosyu.nekoweb.org"],*/
+  ["https://cqrcin0.nekoweb.org/"],
+  ["https://ne0light.nekoweb.org/"],
+  ["https://agoraroad.nekoweb.org"],
+  ["https://martin.nekoweb.org"],
+  ["https://raeum.nekoweb.org"],
+  [
+    "https://deltafrost.nekoweb.org",
+    "delta",
+    "DeltaFrost is a digital website encased inside an ice cube, but it's guaranteed* to melt your heart! (*Not actually guaranteed.)",
+  ],
+  [
+    "https://marsh.nekoweb.org",
+    "marsh",
+    "a silly frutiger aero inspired site for all my art and other cool creations :0] !!!",
+  ],
+  ["https://cannabidiol.nekoweb.org/index.html"],
+  ["https://electronica.nekoweb.org"],
+  ["https://soni.nekoweb.org/", "soni", "soniweb dot org"],
+  [
+    "https://starrish.nekoweb.org/",
+    "sophie",
+    "a safe space (wink) for a silly gal and her sillier interests <3",
+  ],
+  [
+    "https://neko.lunaui.cc/",
+    "lunaui",
+    "personal site for fun stuff when i have time :D",
+  ],
+  ["https://feyradio.moe/"],
+  ["https://floraltriptych.nekoweb.org/"],
+  ["https://sunshine.nekoweb.org/"],
+  ["https://buster.nekoweb.org/"],
+  [
+    "https://rickgottaken.nekoweb.org/",
+    "Rick",
+    "Site I just decided to randomly create one day.",
+  ],
+  [
+    "https://illiterate.nekoweb.org",
+    "void",
+    "some excerpts & collections of useful information for my worldbuilding, or just something I enjoy reading",
+  ],
+  [
+    "https://atomicbolts.nekoweb.org/",
+    "atomicbolts",
+    "personal website, project showcase, QUEER!!",
+  ],
+  [
+    "https://astracelestine.nekoweb.org/",
+    "astra",
+    "a site for me myself and the things i liek :3",
+  ],
+  [
+    "https://cutie-club.nekoweb.org",
+    "rin",
+    "personal site for nostalgia and fun :3",
+  ],
+  ["https://landville.nekoweb.org/"],
+  ["https://demgoze.nekoweb.org"],
+  ["https://pastel-skies.nekoweb.org"],
+  ["https://pussydestroyer2000.nekoweb.org"],
+  ["https://kinitoafterstory.nekoweb.org/"],
+  ["https://drfred.nekoweb.org/"],
+  ["https://spacecore.nekoweb.org/"],
+  ["https://naico.nekoweb.org/"],
+  ["https://wisp.ypuf.xyz/"],
+  ["https://mtv129.nekoweb.org"],
+  ["https://yumeoi.skin/"],
+  ["https://haluro.nekoweb.org/"],
+  ["https://darkosparko.nekoweb.org/"],
+  ["https://foolcrum57.nekoweb.org/"],
+  [
+    "https://thebrainhellscape.nekoweb.org/",
+    "thebrainhellscape13",
+    "animations, art, and more",
+  ],
+  [
+    "https://c04x14l.net/",
+    "C04X14L",
+    "Enter the silly zone… I mostly draw art. Usually sparkly anime characters.",
+  ],
+  ["https://bugwatcher.nekoweb.org/"],
+  [
+    "https://maddycha.com/",
+    "maddy ੈ✩‧₊",
+    "my silly little site for interests, games, art, etc.",
+  ],
+  [
+    "https://chocostar.nekoweb.org/",
+    "Choco",
+    "a personal website about stuff i like",
+  ],
+  ["https://jbc.lol/", "jb", "uhh a personal website i guess???"],
+  ["https://brooklynights.nekoweb.org/"],
+  ["https://jackpurrin.me"],
+  ["https://hellsgirl.net/", "rose", "goth girl's virtual hellscape"],
+  ["https://takenvaullt.nekoweb.org/"],
+  ["https://rfonte.nekoweb.org/"],
+  [
+    "https://deadon.rip/",
+    "Dead",
+    "Home for my punk ass to share music and stuff I like",
+  ],
+  ["https://angs-corner.nekoweb.org/"],
+  ["https://flonkie.nekoweb.org/"],
+  [
+    "https://seunglixe.nekoweb.org/",
+    "Seunglixe",
+    "My cozy little spot on the internet!",
+  ],
+  ["https://praised.nekoweb.org/"],
+  ["https://www.hattie.gay/"],
+  ["https://nikonet.nekoweb.org/"],
+  ["https://avenue4strangerz.nekoweb.org/"],
+  ["https://jungle.nekoweb.org/"],
+  ["https://r3ckoning.nekoweb.org/"],
+  ["https://sheep.nekoweb.org/"],
+  ["https://soweliawa.nekoweb.org/"],
+  ["https://kierio.nekoweb.org/"],
+  ["https://sealshore.nekoweb.org/"],
+  ["https://kadser.nekoweb.org/", "kadser"],
+  ["https://brooklyne.art/"],
+  ["https://laserboy.nekoweb.org/"],
+  [
+    "https://twotriplezero.nekoweb.org/",
+    "Heap",
+    "A humble personal site all about me, my niche interests, and my creative work - mostly featuring Original Characters and Gijinkas of my favorite songs.",
+  ],
+  ["https://luvrksknskyejourney.org/"],
+  ["https://deetdee.nekoweb.org/"],
+  ["https://duckbugswebsite.nekoweb.org/"],
+  ["https://techperson389.nekoweb.org/"],
+  ["https://esoterical.nekoweb.org/"],
+  ["https://arlatius.nekoweb.org/"],
+  [
+    "https://shadowken.nekoweb.org/",
+    "Kay",
+    "Shadowken's Web. I have black cats!!! and cool music taste and badly drawn art. <3",
+  ],
+  ["https://offdays-alyson.nekoweb.org/"],
+  ["https://napkinonline.nekoweb.org"],
+  ["https://katrickthekirbyfan.nekoweb.org/"],
+  ["https://cryocannon.nekoweb.org/"],
+  ["https://scenetalia.nekoweb.org/"],
+  ["https://hml.nekoweb.org/"],
+  //[],
+  ["https://mildlypepper.net/"],
+  ["https://cefa.moe/"],
+  ["https://oceanmew.com/"],
+  ["https://luckyatoll.nekoweb.org/"],
+  ["https://lovelink.nekoweb.org/"],
+  ["https://pinksmores.nekoweb.org/"],
+  ["https://roflcopterr.nekoweb.org/"],
+  ["https://prettygourlave.nekoweb.org/"],
+  [
+    "https://pizzacatdelights.nekoweb.org/",
+    "Pizzacat Delights",
+    "Welcome to my cozy home, also known as my website. It's run by an autistic woman who loves pizza and cats.",
+  ],
+  ["https://crowofthe.day/"],
+  ["https://devilgrey.com/"],
+  ["https://luckyuke.nekoweb.org/"],
+  ["https://saijito.com/"],
+  ["https://stickynotes4u.nekoweb.org"],
+  ["https://mymindpalace.nekoweb.org"],
+  ["https://anerdyartists.nekoweb.org/"],
+  ["https://kitsunekashi.nekoweb.org/"],
+  ["https://luna-uwu.nekoweb.org/"],
+  ["https://restruct.nekoweb.org/"],
+];
+
+// sites that are connected with webring members, and don't need to be their own individual sites.
+var extras = [["https://tepiloxtl.nekoweb.org/", "https://tepiloxtl.net/"]];
+
+var colors = ["blue", "cyan", "gray", "green", "pink", "purple", "yellow"];
+
+//the name of the ring
+var ringName = "nekowebring";
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = "nekowebring";
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = "https://webring.nekoweb.org/members";
+
+//should the widget include a random button?
+var useRandom = true;

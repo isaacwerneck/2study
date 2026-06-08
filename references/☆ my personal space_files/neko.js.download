@@ -1,0 +1,58 @@
+var currentScript = document.querySelector("script[data-nekowebring-widget]");
+if (currentScript === null) currentScript = document.currentScript;
+function getSafe(fn, defaultVal) {
+  try {
+    return fn();
+  } catch (e) {
+    return defaultVal;
+  }
+}
+var tag = document.getElementById(ringID);
+var thisSite = window.location.href;
+var thisIndex = null;
+var widgetColor = "";
+for (var i = 0; i < sites.length; i++) {
+  if (
+    thisSite.indexOf(
+      getSafe(function () {
+        return sites[i][0];
+      }, ""),
+    ) === 0
+  ) {
+    thisIndex = i;
+    break;
+  }
+}
+for (var i = 0; i < extras.length; i++) {
+  if (thisSite.indexOf(extras[i][0]) === 0) {
+    for (var s = 0; s < sites.length; s++) {
+      if (sites[s][0] === extras[i][1]) {
+        thisIndex = s;
+        break;
+      }
+    }
+  }
+  break;
+}
+if (thisIndex == null) {
+  tag.insertAdjacentHTML("afterbegin", `oops! not in ${ringName}!`);
+} else {
+  var previousIndex = thisIndex - 1 < 0 ? sites.length - 1 : thisIndex - 1;
+  var nextIndex = thisIndex + 1 >= sites.length ? 0 : thisIndex + 1;
+  var indexText = "";
+  if (useIndex) {
+    indexText = `<a href='https://webring.nekoweb.org/' target="_blank">nekowebring</a>`;
+  }
+  tag.insertAdjacentHTML(
+    "afterbegin",
+    '<a href="' +
+      getSafe(function () {
+        return sites[previousIndex][0];
+      }, "") +
+      '" target="_blank">← </a></td><td style="text-align: center;" class="webring-info"><a href="' +
+      indexPage +
+      '" target="_blank">nekowebring</a></td><td class="webring-next"><a href="' +
+      sites[nextIndex][0] +
+      '" target="_blank"> →</a>'
+  );
+}

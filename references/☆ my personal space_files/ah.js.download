@@ -1,0 +1,27 @@
+var tag = document.getElementById(ringID);
+thisSite = window.location.href;
+thisIndex = null;
+for (i = 0; i < AAsites.length; i++) {
+  if (
+    thisSite.replace(/\/$/, "").startsWith(AAsites[i].url.replace(/\/$/, ""))
+  ) {
+    thisIndex = i;
+    break;
+  }
+}
+function createWidget(color) {
+  if (thisIndex == null) {
+    tag.insertAdjacentHTML("afterbegin", `oops! not in ${ringName}!`);
+  } else {
+    previousIndex = thisIndex - 1 < 0 ? AAsites.length - 1 : thisIndex - 1;
+    nextIndex = thisIndex + 1 >= AAsites.length ? 0 : thisIndex + 1;
+    indexText = "";
+    if (useIndex) {
+      indexText = `<a href='https://zpires.com/website/alterhuman-assembly/' target='_blank'>Alterhuman Assembly</a>`;
+    }
+    tag.insertAdjacentHTML(
+      "afterbegin",
+      `<a href='${AAsites[previousIndex].url}' target='_blank'>←</a> <a href='https://zpires.com/website/alterhuman-assembly/' target='_blank'>Alterhuman Assembly</a> <a href='${AAsites[nextIndex].url}' target='_blank'>→</a>`
+    );
+  }
+}

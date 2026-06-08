@@ -1,0 +1,597 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var AAsites = [
+  {
+    img: "https://thhpii.net/website/images/thhpii-button.png",
+    name: "THHPII.net",
+    url: "https://thhpii.net",
+    description:
+      "the House's personal site for shrines, worldbuilding, and art",
+    imgdesc:
+      "88x31 button for THHPII in yellow with red shadow against a dark blue background with dark green zigzags",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "The River System",
+    url: "https://theriversystem.neocities.org",
+    description:
+      "The home base for all of our writings, both as a system and on our individual experiences with alterhumanity. Hosts resources and links to others within the community as well.",
+    imgdesc:
+      "88x31 button that says 'alterhuman assembly' with a green dotted border around it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/Pocket-Full-of-Draconic-Dreams-Site-Button.gif",
+    name: "Pocket Full of Draconic Dreams",
+    url: "https://dreamdragon.neocities.org",
+    description:
+      "Personal/art site with external links to my alterhuman writings and resources.",
+    imgdesc:
+      "88x31 button that says 'pocket full of' with white text on a black background that gets chomped on by gray spikes and turns into pink starry background with the words 'draconic dreams' in orange cursive, with the pen turning into a dragon",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/silvermoon-button.gif",
+    name: "Pack of Weirdos",
+    url: "https://gze.neocities.org",
+    description:
+      "A mostly nonhuman system's rambles about identity, mental health, hobbies, and random other things!",
+    imgdesc:
+      "88x31 button with eyes of various portraits in different colors before ending on 'pack of weirdos' in a rainbow gradient font",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/whiskerprogram.png",
+    name: "Whisker's Den",
+    url: "https://whiskerprogram.neocities.org",
+    description:
+      "A 'kin experience-focused site run by a therian and fictionkin cat program.",
+    imgdesc:
+      "88x31 button that says 'whisker program dot neocities' against a green matrix background with a black cat lying down in front of it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/falconiforme-button.jpeg",
+    name: "Falconiforme",
+    url: "https://falconiforme.neocities.org",
+    description:
+      "A personal site hosting art, shrines, and alterhuman-related writing and resources.",
+    imgdesc:
+      "88x31 button that says 'falconiforme' next to a pixel of the pokemon raikou",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/Coyote-Button.gif",
+    name: "Coyote of Autumn Grove",
+    url: "https://koyanthrope.neocities.org",
+    description:
+      "A site run by a coyote shapeshifter to discuss its experiences with nonhumanity between art, writings, music, and so on, with other random fun stuff on the side!",
+    imgdesc: "88x31 button of a coyote head bouncing",
+  },
+  {
+    img: "https://ballonlea.net/img/sitebutton3.gif",
+    name: "Ballonlea",
+    url: "https://ballonlea.net",
+    description:
+      "Built among the trunks of towering trees, this website is home to an autistic alterhuman's art, shrines, essays, and more!",
+    imgdesc:
+      "88x31 button of sylveon bouncing next to a text bubble that says 'ballonlea'",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/petrichoran-button.png",
+    name: "The Magician's Lair",
+    url: "https://petrichoran.wtf",
+    description:
+      "The Lair of a reincarnated fictional character who is also transpecies, an archetroper, and a soulbonder.",
+    imgdesc:
+      "88x31 button featuring part of the magician tarot card next to a green rectangle that says 'the magician's lair'",
+  },
+  {
+    img: "https://interstellarsystem.neocities.org/Images/button.png",
+    name: "The Interstellar System",
+    url: "https://interstellarsystem.neocities.org",
+    description:
+      "Personal site of the Interstellar System--fictive-heavy plural with a whole lot of alterhumanity going on. Includes personal experiences, resources, and whatever else we want.",
+    imgdesc:
+      "88x31 button featuring the interstellar system's symbol (a white four pointed star against a dark green background inside a golden circle), the text 'interstellar system', and an alt key icon",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/angels-landing.png",
+    name: "Angel's Landing",
+    url: "https://angelslanding.neocities.org",
+    description:
+      "The personal site of an angel, for shrines, writing, and discussing memories.",
+    imgdesc:
+      "88x31 button with a pink and yellow gradient background that says 'angel's landing' next to a small picture of white angel wings crowned with a white halo",
+  },
+  {
+    img: "https://testtubesterone.nekoweb.org/testtubesterone.png",
+    name: "testtubesterone",
+    url: "https://testtubesterone.nekoweb.org",
+    description:
+      "personal webplanet for multiple canines, right here on Earth!",
+    imgdesc:
+      "88x31 button with a green background with a stylized paw print with a a male transgender symbol on the main pad and the name 'testtubesterone' with the 'test tube' part in green and the rest in white",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/chimerathing-button.png",
+    name: "chimerathing",
+    url: "https://chimerathing.neocities.org",
+    description:
+      "a personal site primarily for art run by an eldritch catboygirlthing who's also the host of a fictive heavy system",
+    imgdesc:
+      "88x31 button featuring a closeup of a being's face with large brown eyes, brown skin, and brown fluffy curly hair",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/radrocket.gif",
+    name: "RADROCKET",
+    url: "https://radrocket.neocities.org",
+    description: "a dog's personal site, hosting original art and more!",
+    imgdesc:
+      "88x31 button with a green dinosaur with a yellow belly and dark yellow spikes next to the word 'rad'; it opens its mouth to breath a rainbow beam that says 'rocket'",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/hydromaniac.gif",
+    name: "heart shaped box.",
+    url: "https://hydromaniac.neocities.org/mainsite",
+    description:
+      "Castiel's heart shaped box! Home to all things grunge, art, and general interests.",
+    imgdesc:
+      "88x31 gif button with a simplified ophanim angel, then a heart and shaped box, and then the text hydromaniac",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/Nova_Galaxium_Button.gif",
+    name: "Nova's Corner",
+    url: "https://pastel-skies.nekoweb.org",
+    description:
+      "Personal site where I post art, blog and whatnot. Tis my corner of the interwebs and I vibe.",
+    imgdesc:
+      "88x31 gif button with a cat girl's head against a starry sky and the text 'nova galaxium'",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/aglovale.gif",
+    name: "aglovale",
+    url: "https://aglovale.nekoweb.org",
+    description:
+      "A guy who fictioned too close to the sun. Personal site with a bit of everything!",
+    imgdesc:
+      "88x31 gif button with Aglovale from Granblue Fantasy and the text 'aglovale'. the gif shimmers",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/talonswarpedforest.gif",
+    name: "Talon's (Warped) Forest",
+    url: "https://talonswarpedforest.neocities.org",
+    description:
+      "The website of a dragon who's also an enderman (among other things), where you can find art, personal writings and incoherent 3 AM ramblings about alterhumanity.",
+    imgdesc:
+      "88x31 gif button with pixel art of a coniferous forest and moving clouds against a brown background surrounded by a golden double border. text reads 'talon's (warped) forest'.",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/watchers-button.png",
+    name: "Watcher's archive",
+    url: "https://watchers-archive.neocities.org",
+    description:
+      "This web is a little corner to post essays and art about my alterhuman life!",
+    imgdesc:
+      "88x31 button with a light blue background and a layer of grass and dirt at the bottom. text says 'watcher's archive'",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/winunite-button.gif",
+    name: "right★2★theultraviolet",
+    url: "https://brooklynights.nekoweb.org",
+    description:
+      "weird music things things raw windows webproject things random philosophy we forgot 2 exist",
+    imgdesc:
+      "88x31 gif button featuring two purple wiggling windows logo and a bouncing character from codename: hole in the walls",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/caterpillarangel-button.png",
+    name: "caterpillar angel",
+    url: "https://caterpillarangel.neocities.org",
+    description:
+      "CATERPILLAR ANGEL is run by a catdogcreature-thing that likes to write, draw, take pictures, and look at grunkle stan.",
+    imgdesc:
+      "88x31 button that says 'caterpillar angel' all one word in dark brown against an orange background with green pattern and red dashed border",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/lostsignal-button.png",
+    name: "Ubaser",
+    url: "https://thelostsignal.neocities.org",
+    description: "Personal site for a queer, non-human artist on the internet.",
+    imgdesc:
+      "88x31 button with a blue background that says 'the lost signal' in lighter blue. there are two orange stripes on the left and an orange square divided into four squares on the right",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/corvidae-button.gif",
+    name: "corvidae.digital",
+    url: "https://corvidae.digital",
+    description:
+      "my personal digital space! features my art, blog, collections, and more! :D",
+    imgdesc:
+      "88x31 gif button featuring a black background with 'corvidae.digital' on the left and a blinking shiny hisuian zorua on the right, who is pointing to the website name",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/feastingwithghosts-button.png",
+    name: "Feasting With Ghosts",
+    url: "https://feastingwithghosts.com",
+    description: "Fandom, selvesness, and other miscellany.",
+    imgdesc:
+      "88x31 gif button with the words 'Feasting With Ghosts' and a drawing of a fork.",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/tesseract-button.gif",
+    name: "cuboid world",
+    url: "https://tesseractcube.neocities.org",
+    description: "personal site of a very silly fictive heavy system",
+    imgdesc:
+      "Animated 88x31 button with a floating yellow tesseract cube, and the white text Tesseract Sys with twinkling stars beneath, on a black background",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/poppy-button.png",
+    name: "Poppy Hapalopus",
+    url: "https://poppyhapalopus.neocities.org",
+    description:
+      "The home page of Poppy Hapalopus, a therian/otherkind/fictionkind with entirely too many hobbies and too little focus.",
+    imgdesc:
+      "88x31 button with green background and double yellow border with 'poppy hapalopus' in yellow next to yellow flowers",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "from one realm to another",
+    url: "https://0xf0xx0.eth.limo",
+    description: "a lostkins corner of the Internet.",
+    imgdesc:
+      "88x31 button that says 'alterhuman assembly' with a green dotted border around it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/marrowbites-button.png",
+    name: "marrowbites",
+    url: "https://marrowbites.neocities.org",
+    description: "a wolf's personal websites for links and such",
+    imgdesc:
+      "88x31 button chartreuse green rectangular button with orange text that reads 'marrowbites' on the left side and a profile of a red and white wolfdog on the right side",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/xenon-button.gif",
+    name: "Xenon-Starz",
+    url: "https://xenon-starz.neocities.org",
+    description: "Xenon's homepage",
+    imgdesc:
+      "88x31 gif button with a dark blue-purple gradient background with twinkling white stars and the name 'xenon-starz' in purple above a blinking sparkledog",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "Tiercel Green's Den",
+    url: "https://tiercelgreen.neocities.org",
+    description:
+      "The site largely exists to document my experience as a physical dragon otherkin, as well as write a bit about my other 'types and host my essays on alterhumanity.",
+    imgdesc:
+      "88x31 button that says 'alterhuman assembly' with a green dotted border around it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/liquid-sunshine-button.png",
+    name: "Liquid Sunshine",
+    url: "https://liquid-sunshine.neocities.org",
+    description: "The website of a fictokin, indie game dev, and artist!",
+    imgdesc: "Liquid Sunshine on Neocities!",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/brshbgs-button.png",
+    name: "the end of time",
+    url: "https://brshbgs.neocities.org",
+    description:
+      "site full of personal experiences with plurality & alterhumanity. catered for adult audiences, but all sfw.",
+    imgdesc:
+      "a black & white button that reads 'brushbugs' in diagonal text, with 2 cute creatures looking at the viewer.",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "Benjingle Jangles",
+    url: "https://benjingler.nekoweb.org",
+    description:
+      "My website is a little corner for me. Originally, it was just a place to host art, but now I'm trying to make it more than that. May contain mature themes in the future, but not right now. I am actually a vampire you guys I just don't make it obvious okay you guys... gyus...",
+    imgdesc:
+      "88x31 button that says 'alterhuman assembly' with a green dotted border around it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/milkywaytrain-button.png",
+    name: "Milky Way Train",
+    url: "https://milkywaytrain.neocities.org",
+    description:
+      "personal website of a fox in a system that doubles as a bestiary.",
+    imgdesc:
+      "Button with a pixel drawing of a train. 'MILKY WAY TRAIN' is written in white",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "TRUEFINAL2",
+    url: "https://truefinal2.nekoweb.org",
+    description:
+      "Personal introductory site! Oc archive, graphics collecting, and more! :)))",
+    imgdesc:
+      "88x31 button that says 'alterhuman assembly' with a green dotted border around it",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/endsite-button.gif",
+    name: "end.site",
+    url: "https://endy-boi.neocities.org",
+    description: "personal site and hoard of end!",
+    imgdesc:
+      "88x31 button displaying the words end.site along with a dragon wing and tiny agender and aroace flags",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/columbidae-button.png",
+    name: "Columbidae Corner",
+    url: "https://columbidaecorner.neocities.org",
+    description: `a pigeon's personal little corner of the internet! houses poetry, comics, weird introspective blog-game, and much more!`,
+    imgdesc:
+      "pink 88x31 button with a pigeon with heart eyes on it. text reads: columbidae corner",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/weirdo-button.gif",
+    name: "Weirdo On The Net",
+    url: "https://weirdo.nekoweb.org",
+    description: `a cave for the strange, odd and weird internet dwellers`,
+    imgdesc:
+      "purple leopard print 88x31 button with the text 'weirdo' flashing teal green",
+  },
+  {
+    img: "/website/images/alterhuman-assembly/arlatius-button.gif",
+    name: "arlatius_",
+    url: "https://arlatius.nekoweb.org",
+    description: `a living personal website thats only a little bit corrupted`,
+    imgdesc: `a blue button reading "arlatius_" with a computer monitor, it glitches and becomes red before returning to blue`,
+  },
+  {
+    img: "https://www.regianus.eu/assets/index/buttons/otterbuttonuwu.gif",
+    name: "Regi's Web Vault",
+    url: "https://www.regianus.eu",
+    description: `A personal website with lots of files, secrets, easter
+eggs, furries and otters!`,
+    imgdesc: `88x31 gif button with a blue background that says 'regianus magic programmer' next to a bouncing otter's head wearing a crown`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/ccbutton.png",
+    name: "Cat's Cradle",
+    url: "https://constel.neocities.org",
+    description: `A microblog where I post whatever (treating it as I would any other 'typical' social media), though primarily leaning toward my experiences/thoughts re: therianthropy, trans/gender stuff, and whatever nerd thing I'm focused on at the given moment in time.`,
+    imgdesc: `88x31 button that says 'alterhuman assembly' with a green dotted border around it`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/gillman-button.png",
+    name: "Gillman's Reading Room",
+    url: "https://gillmansreadingroom.neocities.org",
+    description: `A friend from the Devonian who enjoys collecting websites and talking about the strange in-betweens and liminalities of alterhumanity.`,
+    imgdesc: `black 88x31 button. On the left is the nonhuman symbol, and on the right reads "Gillman's Reading Room". The symbol, text, and border around the button are colored with a green gradient`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/crystalkismet-button.gif",
+    name: "Crystalline Network",
+    url: "https://crystalkismet.neocities.org",
+    description: `A fun personal site for our little collective of fictives and fictionkin! Site contains mature themes/content.`,
+    imgdesc: `red 88x31 button with 'crystal kismet' surrounded by hearts and alternates between shadow the hedghehog and a symbol`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/elijahs-button.png",
+    name: "Elijah's Place",
+    url: "https://elijahposttrash.neocities.org",
+    description: `My site is all about my interests that I love and would like to share with others. Come over to see what's up!`,
+    imgdesc: `88x31 button The text 'Elijah post trash' with a person with a backwards blue baseball cap looking at the floating text shocked. The background being sky blue with clouds`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/canidaecollective-button.gif",
+    name: "Canidae Collective",
+    url: "https://canidae-collective.neocities.org",
+    description: `Personal site for a weird, physically nonhuman, adaptive system ^_^`,
+    imgdesc: `Yellow 88x31 button with orange text that reads 'Canidae Collective,' with two animated paw prints in the top right corner. On the left side is an animated, pixelated black canine barking. They have a pinkish face scar & orange radio collar.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/draggian-button.gif",
+    name: "Draggian Universe",
+    url: "https://draggianuniverse.neocities.org",
+    description: `The evil lair of an emo demon snake who likes edgy music, virtual pet games, and self-indulgent storytelling.`,
+    imgdesc: `A pixel 88x31 button of a red snake skeleton silhouette against a black and red concert background. It includes a looping animation of the snake flicking its tongue, then the button being covered by black slime.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/xxallbarknobitexx-button.png",
+    name: "xxallbarknobitexx",
+    url: "https://xxallbarknobitexx.neocities.org",
+    description: `personal website meant for storing art and things i like, ran by a wolf/malamute therian, 18+`,
+    imgdesc: `88x31 button with a black background and pink and yellow text that reads "Lucifer" in cursive`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/hexaitos-button.png",
+    name: "hexaitos.com",
+    url: "https://hexaitos.com",
+    description: `Hexaitos’ personal website. Mostly about technology
+    (especially *nix systems and FOSS in general) and therianthropy. Also has commissoned art.`,
+    imgdesc: `88x31 web button for hexaitos.com. The left side of
+    the button shows the head of an anthropomorphic bateleur eagle and the left side shows "hexaitos.com". The background of the button is
+    orange.`,
+  },
+  {
+    img: "https://file.garden/aN0WamYmaWI-Ommd/ezgif-5d78a417ce746aa8.gif",
+    name: "Dazai's Fun Palace",
+    url: "https://dazaisfunpalace.nekoweb.org",
+    description: `silly site for all my silly doings`,
+    imgdesc: `88x31 gif button for Dazai's Fun Palace with a bouncing anime character`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/ivyswell-button.png",
+    name: "Ivyswell Tavern",
+    url: "https://ivyswell-tavern.neocities.org",
+    description: `Personal website themed around a haunted tavern, run by a vampire! Features artworks and personal reflections on videogames, media, and taking back the web.`,
+    imgdesc: `88x31 button reading 'Ivyswell Tavern' in a medieval-inspired font. The background is a red bricks wall with dark green ivy growing on it`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/novadergs-button.gif",
+    name: "Nova (Discount Ghidorah System)",
+    url: "https://nova-dergs.nekoweb.org",
+    description: `Check out our collection of personal essays, videos and artwork. We also hoard resources related to nonhumanity and plurality.`,
+    imgdesc: `88x31 button featuring a blinking owl against a pastel rainbow on a website button that reads: nova-dergs.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/ferality-button.gif",
+    name: "Ferality in Flux",
+    url: "https://feralityflux.nekoweb.org",
+    description: `The personal blog of an entirely animal DID subsystem! May discuss topics such as C. Zoanthropy, Nonhumanity, and Plurality.`,
+    imgdesc: `88x31 button with the text "FERALITY IN FLUX" in light green against a dark, simplistic forest background.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/sunnishinez-button.png",
+    name: "Sunnishinez",
+    url: "https://sunnishinez.neocities.org",
+    description: `PvZ fueled site!`,
+    imgdesc: `88x31 button with the plants vs zombies sunflower in the corner and the text "sunnishinez"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/alterhuman-assembly-alt-button.png",
+    name: "The Arctic Eclipse Constellation",
+    url: "https://fallen-and-holy.neocities.org",
+    description: `The personal website of a queer, alterhuman, and pagan system– the Arctic Eclipse Constellation. Contains rambles on many subjects, usually involving alterhumanity.`,
+    imgdesc: `88x31 button that says 'alterhuman assembly' with a green dotted border around it`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/ascarius-button.jpg",
+    name: "Ascarius's territory",
+    url: "https://ascarius.neocities.org",
+    description: `A personal website for writing, art and personal thoughts.`,
+    imgdesc: `88x31 button that says 'ascarius' with close up picture of a wolf as a background`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/kissingcomputer-button.png",
+    name: "Kissing.Computer",
+    url: "https://kissing.computer",
+    description: `The personal website of a freakazoid energy being lesbo from outer space. Personal stuff, fiction/fandom, tech topics, and creative stuff, mostly.`,
+    imgdesc: `88x31 site button with a pink and green radial gradient background. in the center is an emoji of a laptop with kiss marks surrounding it.`,
+  },
+  {
+    img: "https://novalite.rest/siteImage/siteBtn.png",
+    name: "novalite.rest",
+    url: "https://novalite.rest",
+    description: `personal site of a weird gay moongirl. ft. art, blogging, a graphics hoard and more.`,
+    imgdesc: `88x31 site button reading "novalite". beside the text is a yellow eye on a blue background.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/zombzgutzz-button.png",
+    name: "zombzgutzz",
+    url: "https://zombzgutzz.neocities.org",
+    description: `a zombie's personal website dedicated to its alterhumanity, its favorite music, its cat, and more`,
+    imgdesc: `88x31 site button with a red background that says "zombzgutzz now"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/grimalkin-button.gif",
+    name: "The Grimalkin Library",
+    url: "https://eringrimalkin.neocities.org",
+    description: `a cat's personal website, home to audio and visual projects, scraps, resources, and rare music archives. always updating, always changing, always a work-in-progress.`,
+    imgdesc: `88x31 button containing text that reads 'GRIMALKIN' with paw-prints slightly overtop of the text. separate theta and delta symbols sit in the lower right corner.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/skateboard-button.png",
+    name: "Craterdust Capital",
+    url: "https://skateboard.nekoweb.org",
+    description: `a queermaxxing fictionkin's personal site :]`,
+    imgdesc: `88x31 button with a red background and a character with horns. "skateboard" is in white`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/mechagic-button.webp",
+    name: "Mechagic's Celeboratory Party",
+    url: "https://mechagic.pages.gay",
+    description: `A very cool personal website that is owned by a cockroach that learned how to type.`,
+    imgdesc: `88x31 button  with a white background and an anthropomorphized cockroach head blinking. text reads "mechagic party"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/dollybaby-button.gif",
+    name: "Doll's Dream",
+    url: "https://dolly.baby",
+    description: `One doll's home on the internet.`,
+    imgdesc: `A pastel pink 88x31 button with a darker pink stitching trim. It slowly flashes a black and white bunny, a pink bow, and a carousel horse, before showing the user's domain, dolly.baby.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/novaverie-button.png",
+    name: "NovaVerie",
+    url: "https://www.novaverie.net",
+    description: `A collection and display of all my thoughts, interests, and creations. Includes my zines, art, blog, and some shrines for my favorite things!`,
+    imgdesc: `A yellow 88x31 button with "NovaVerie" in black with black squiggle accents`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/astroglitch-button.png",
+    name: "AstroGlitching",
+    url: "https://astroglitch.space",
+    description: `Personal website of the AstroGlitch, a draconic system with too many interests.`,
+    imgdesc: `88x31 button with a red background with messy white text that reads "AstroGlitch"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/gourdlake-button.gif",
+    name: "Medic's Corner of the Internet",
+    url: "https://gourdlake.neocities.org",
+    description: `A really cool personal + blog website of the Medic on the internet.`,
+    imgdesc: `88x31 button A person with a red hijab, antennae and a happy expression on the left. The button has a rainbow border. The text says "gourd lake neocities org"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/crittershowcircus-button.gif",
+    name: "Critter Show Circus",
+    url: "https://crittershowcircus.neocities.org/",
+    description: `A nostalgic palace for the works and creations of the Critters.`,
+    imgdesc: `88x31 GIF button with a blue TV-head character and CSC in bouncing yellow balloons"`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/hskin-button.png",
+    name: "HSkin.org",
+    url: "https://hskin.org",
+    description: `visionaryParacosmos' Homestuck fictionfolk resource site. vP is a system with a majority of Homestuck fictionfolk. vP wants to grow, celebrate, and archive the Homestuck fictionfolk community.`,
+    imgdesc: `A site button for HSkin.org. It has a black background, a purple stripe on top and a magenta stripe on bottom. There is a white arrow in the shape of the alt key/alterhuman symbol pointing to text reading HSkin.org. The HS is highlighted in lime green while the rest of the text is white.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/lycanthrive-button.png",
+    name: "lycanthrive's hard drive",
+    url: "https://lycanthrive.nekoweb.org",
+    description: `a nekoweb site made by lycanthrive for personal use!`,
+    imgdesc: `a gray website 88x31 button with an icon of a black wolf to the left and text that reads "lycanthrive.nekoweb.org" to the right`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/moondancer-button.png",
+    name: "Moondancer",
+    url: "https://moondancer.neocities.org",
+    description: `A personal site serving as a deer's digital playground and keepsake-place, intended to eventually be filled with writings, artwork, and other miscellaneous projects.`,
+    imgdesc: `an 88x31 button with a forest background with white flowers. pink text says 'moon dancer' and there's a dashed border in the same color as the text`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/tdf-button.png",
+    name: "Crash 1996",
+    url: "https://crash1996.wiki",
+    description: `Website for our system of computers. We host our coined terms, and about our system here.`,
+    imgdesc: `an 88x31 button of a downward chevron. It has a red background, and three stripes colored Black, white and grey. The letters 'TDF' are on top.`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/strife-button.gif",
+    name: "Everlasting Strife",
+    url: "https://eriswavereal.nekoweb.org",
+    description: `A personal site for whatever I want!`,
+    imgdesc: `88x31 button which mimics an old Windows style pop-up with the text "Everlasting Strife" in black with purple and red outlines`,
+  },
+  {
+    img: "/website/images/alterhuman-assembly/akansashasolaya-button.gif",
+    name: "akan-sashasolaya",
+    url: "https://akan-sashasolaya.neocities.org",
+    description: `A home to lost aliens and earthbound travellers, this site is for alterhumans sourced from Star Trek. Hosts a mixture of our own experiences as well as community projects, journal prompts, community history, and more.`,
+    imgdesc: `88x31 animated button of the IDIC symbol. Text reads 'akan-sashasolaya'`,
+  },
+];
+
+//the name of the ring
+var ringName = "Alterhuman Assembly";
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = "alterhuman-ring";
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = "https://zpires.com/website/alterhuman-assembly/index.html";
+
+//should the widget include a random button?
+var useRandom = true;

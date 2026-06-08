@@ -1,0 +1,123 @@
+/* onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js and onionring.css (this one!)
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-10-24 */
+
+/* === ONIONRING.CSS === */
+/* this file affects the style of the widget. remember to replace all instances of #doodlering with whatever value you have for ringID in the onionring-widget.js file. make sure it still has the # at the front, though! probably easiest to use find+replace to do it */
+
+#doodlering {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width:165px !important; /* 64:47*/
+  height:100px !important;
+  box-sizing: border-box;
+  font-family: Comic Sans MS !important;
+  font-size: 6px!important;
+  text-shadow:none !important;
+  text-decoration: none !important;
+  line-height:20px !important;
+  image-rendering: pixelated;
+  position: relative;
+}
+
+#doodlering div {
+	margin: 0 !important;
+}
+
+#doodlering>img{
+    margin:0 !important;
+    padding: 0 !important;
+    min-height: 64px !important;
+}
+
+#doodlering .webring-wrapper{
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  width:165px;
+  height:inherit;
+  display: flex;
+  letter-spacing: normal !important;
+  flex-direction: column;
+  justify-content: top!important;
+  background-image: url(https://evehibi.nekoweb.org/doodlering/background3.png) !important;
+  background-size: contain;
+  background-repeat: none !important;
+  color: black !important;
+}
+
+#doodlering .webring-flex{
+  display:flex;
+  justify-content: top!important;
+  position: relative;
+}
+
+#doodlering .webring-title{
+  text-align: right!important;
+}
+
+#doodlering .webring-title h2{
+  margin:0;
+  margin-top: 1px;
+  font-size: 17px !important;
+  text-transform: none !important;
+  border:none !important;
+  color: transparent;
+  text-shadow: none !important;
+  background-color: transparent !important;
+}
+
+#doodlering .webring-image{
+  display:block;
+  position: absolute;
+  min-height:64px !important;
+  width:64px;
+  top:2px;
+  left: 24px;
+  transform: rotate(10deg);
+}
+
+#doodlering a {
+    color: black;
+    text-decoration: none;
+}
+
+#doodlering .webring-footer {
+   text-align:center;
+   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+   transform: rotate(10deg);
+   position: absolute;
+   bottom: 0;
+}
+
+#doodlering .webring-next, #doodlering .webring-prev{
+  display:block;
+  position: absolute;
+  justify-content: center!important;
+  transform: rotate(10deg);
+}
+
+#doodlering .webring-next {
+	right: 2px;
+	top: 14px;
+}
+
+#doodlering .webring-prev {
+	right: 22px;
+	top: 40px;
+}
+
+#doodlering .webring-next img {
+  transform: scaleX(-1);
+}
+
+#doodlering .webring-links a {
+  font-size:small !important;
+}
+
+#doodlering .arrow-image{
+  width:50px;
+}

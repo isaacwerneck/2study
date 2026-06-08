@@ -1,0 +1,23 @@
+@font-face {
+    font-family:'lmm-i'; 
+    src: url('lmm-i.otf');
+    }
+
+.problematic{
+    text-transform: lowercase;
+}
+
+.problematic strike{
+    font-family:'lmm-i'; 
+    font-size: 1.15em;
+    letter-spacing: 2px;
+    opacity: 0.65;
+}
+
+.problematic .blorbo{
+    font-style: italic; 
+}
+
+.problematic a{
+    text-decoration: none;
+}

@@ -1,0 +1,35 @@
+@font-face {
+  font-family: monitorjest;
+  src: url(https://ddnikki.moe/fonts/Jest.otf);
+}
+
+.monitoring {
+  border: 2px solid;
+  border-color: #141027;
+  padding: 10px;
+  background-color: #242037;
+  height:180px;
+  width:200px;
+  image-rendering: crisp-edges;
+  line-height:1.14 !important;
+  font-family: monitorjest;
+}
+
+.monitoringlink {
+	color: white !important;
+	text-decoration:none;
+	font-size:24px;
+	font-family: monitorjest;
+	line-height:1.4 !important;
+}
+
+.monitoringlink:hover {
+	color: #aeaccb !important;
+	text-decoration:none;
+	font-family: monitorjest;
+}
+
+.monitorimg {
+	image-rendering: crisp-edges;
+	border-radius:35px;
+}

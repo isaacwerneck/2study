@@ -1,0 +1,23 @@
+var tag = document.getElementById(ringID);
+thisSite = window.location.href;
+thisIndex = null;
+for (i = 0; i < xenicSites.length; i++) {
+  if (thisSite.startsWith(xenicSites[i])) {
+    thisIndex = i;
+    break;
+  }
+}
+if (thisIndex == null) {
+  tag.insertAdjacentHTML("afterbegin", `oops! not in ${ringName}!`);
+} else {
+  previousIndex = thisIndex - 1 < 0 ? xenicSites.length - 1 : thisIndex - 1;
+  nextIndex = thisIndex + 1 >= xenicSites.length ? 0 : thisIndex + 1;
+  indexText = "";
+  if (useIndex) {
+    indexText = `<a href='${indexPage}' target='_blank'>Xenics of the Net</a>`;
+  }
+  tag.insertAdjacentHTML(
+    "afterbegin",
+    `<a href='${sites[previousIndex]}' target='_blank'>←</a> <a href='https://xenics.neocities.org/' target='_blank'>Xenics of the Net</a> <a href='${sites[nextIndex]}' target='_blank'>→</a>`
+  );
+}

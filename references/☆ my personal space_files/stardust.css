@@ -1,0 +1,314 @@
+:root {
+  --background-color: #000000;
+  --background-image: url("/graphics/main/stars.png");
+  --text: #d8f0fc;
+  --blue: #0000ff;
+  --selection: #0000ff50;
+  --mark: #0042ef50;
+  --focus: #55aaff;
+  --midnight: #03056199;
+  --tooltip: #030561;
+}
+@keyframes rainbow {
+  0% {
+    color: #ff4747;
+  }
+  10% {
+    color: #ff8347;
+  }
+  20% {
+    color: #ffe047;
+  }
+  30% {
+    color: #66ff47;
+  }
+  40% {
+    color: #6ff;
+  }
+  50% {
+    color: #44abff;
+  }
+  60% {
+    color: #3730ff;
+  }
+  70% {
+    color: #7c51ff;
+  }
+  80% {
+    color: #ff51f6;
+  }
+  90% {
+    color: #ff007d;
+  }
+  100% {
+    color: #ff4747;
+  }
+}
+.brighten img:hover {
+  -webkit-filter: brightness(110%);
+}
+a:hover {
+  animation: rainbow 1s linear 0s infinite normal;
+  letter-spacing: 0.2px;
+  cursor: url(/graphics/main/wii2.png), auto;
+}
+body {
+  image-rendering: pixelated;
+  color: var(--text);
+  font-size: 1em;
+  margin-bottom: 0;
+  margin: 8px;
+  background-size: 200px;
+  max-width: 780px;
+  font-family: "LDF", sans-serif;
+}
+@font-face {
+  font-family: "LDF";
+  src: url("ldf.ttf") format("truetype");
+}
+* {
+  font-size: 1em;
+  cursor: url(/graphics/main/wii1.png), auto;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) var(--background-color);
+}
+::selection {
+  color: var(--text);
+  background: var(--selection);
+}
+.solid {
+  border-top: 1px solid var(--text);
+  border-bottom: 0 solid #fff0;
+  border-right: 0 solid #fff0;
+  border-left: 0 solid #fff0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+mark {
+  background: var(--mark);
+  border: 0 solid var(--background-color);
+  color: var(--text);
+}
+textarea,
+.copyButton {
+  width: 160px;
+  font-size: 1em;
+  background-color: var(--midnight);
+  color: var(--text);
+  height: 40px;
+  margin-bottom: 10px;
+  border: 1px var(--blue);
+}
+input {
+  min-width: 330px;
+  font-size: 0.875em;
+  background-color: #000;
+  color: #d8f0fc;
+  height: 25px;
+  margin-bottom: 5px;
+  border: 1px solid blue;
+  font-family: "LDF", sans-serif;
+  cursor: text;
+}
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+#flex {
+  display: flex;
+  max-height: 1000px;
+}
+aside {
+  background-color: var(--midnight);
+  width: 200px;
+  margin-top: -7px;
+  padding: 12px;
+  padding-top: 5px;
+}
+main {
+  flex: 1;
+  padding: 10px;
+  padding-top: 5px;
+  order: 2;
+  padding: 0;
+  max-height: 800px;
+}
+#container {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #d8f0fc;
+}
+#container a {
+  color: #d8f0fc;
+  text-decoration: none;
+}
+h1,
+h2,
+h3 {
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+  margin-top: 7px;
+  margin-bottom: 5px;
+}
+h4 {
+  border-bottom: none;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: var(--text);
+  font-size: 1.1em;
+}
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+h1 {
+  font-size: 1.25em;
+}
+h3 {
+  font-size: 1.2em;
+}
+strong {
+  color: var(--text);
+}
+.box {
+  background-color: var(--midnight);
+  border: 1px solid var(--text);
+  max-height: 200px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+}
+ul {
+  list-style-image: url(/graphics/main/star.gif);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.button,
+button {
+  text-decoration: none;
+  background-color: var(--background-color);
+  color: var(--text);
+  border: 1px solid var(--blue);
+  font-family: "LDF", sans-serif;
+}
+.button:hover,
+button:hover {
+  animation: rainbow 1s linear 0s infinite normal;
+  letter-spacing: 0.2px;
+  cursor: url(/graphics/main/wii2.png), auto;
+}
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+  background: none;
+  margin-right: 1px;
+}
+.wrapper > * {
+  flex: 1 100%;
+  background: none;
+}
+.parent {
+  display: flex;
+  max-width: 970px;
+  min-height: 700px;
+  margin: auto;
+}
+.main {
+  border: 1px solid #d8f0fc;
+  border-right: 0 solid #d8f0fc;
+  font-size: 0.875em;
+  text-align: left;
+  padding: 0;
+  max-height: 2000px;
+  width: 800px;
+}
+.aside {
+  background: none;
+  margin: -5px;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+@media all and (min-width: 600px) {
+  .aside {
+    flex: 1 0 0%;
+    margin: -9px;
+  }
+}
+@media all and (min-width: 800px) {
+  .main {
+    flex: 3 0;
+  }
+  .main {
+    order: 1;
+  }
+  .nav {
+    order: 2;
+  }
+}
+@media screen and (max-width: 900px) {
+  #webamp {
+    display: none !important;
+  }
+}
+abbr.mobile::after {
+  content: "";
+  display: none;
+  font-size: 0.9em;
+  color: #d8f0fc90;
+}
+@media screen and (max-width: 600px) {
+  abbr.mobile::after {
+    content: " (" attr(title) ")";
+    display: inline;
+  }
+  abbr.mobile {
+    text-decoration: none !important;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #flex {
+    flex-wrap: wrap;
+  }
+  aside {
+    width: 100%;
+    text-align: left;
+    margin: 2px;
+  }
+  main {
+    order: 1;
+  }
+  #leftSidebar {
+    order: 2;
+  }
+  #rightSidebar {
+    order: 3;
+  }
+  #navbar ul {
+    flex-wrap: wrap;
+  }
+}
+*:focus-visible,
+li:focus-visible,
+.tooltiptext:focus-visible,
+strong:focus-visible,
+h1:focus-visible,
+h2:focus-visible,
+h3:focus-visible,
+h4:focus-visible,
+main:focus-visible,
+aside:focus-visible,
+mark:focus-visible,
+html:focus-visible,
+a:focus-visible,
+p:focus-visible,
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+img:focus-visible,
+#image-map:focus-visible {
+  outline: 2px solid var(--focus);
+}

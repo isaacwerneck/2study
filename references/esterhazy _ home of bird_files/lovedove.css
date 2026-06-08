@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+HR&display=swap');
+
+.lovedove-clique{
+    font-family: 'Playwrite HR';
+    text-transform: lowercase;
+    font-size: 9pt;
+}
+
+a.lovedove-clique-link:link, a.lovedove-clique-link:visited{
+    text-decoration: none;
+    text-transform: lowercase !important;
+    letter-spacing: 1px;
+    color: #fc72a0;
+}
+
+a.lovedove-clique-link:hover, a.lovedove-clique-link:focus, a.lovedove-clique-link:active{
+    color: #ffc664!important;
+    text-shadow: 1px 1px 0 #fc72a0;
+}
+
+.lovedove-clique-link img:hover {
+    filter: drop-shadow(1px 1px 0 #ffc664);
+}

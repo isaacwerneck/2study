@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2study</title>
+    <link rel="stylesheet" href="css.css" />
+</head>
+<body>
+    <div class="page-shell">
+        <div class="background-shape shape-1"></div>
+        <div class="background-shape shape-2"></div>
+
+        <header class="site-topbar">
+            <div class="brand">
+                <span class="brand-mark">2</span>
+                <span class="brand-name">2study HQ</span>
+            </div>
+            <div class="top-actions">
+                <span class="top-pill">2000s core</span>
+                <span class="top-pill">Retro command center</span>
+            </div>
+        </header>
+
+        <section id="login-container" class="panel auth-panel">
+            <div class="auth-copy">
+                <p class="eyebrow">Welcome back</p>
+                <h1>2study</h1>
+                <p class="muted">Sign in to keep your tasks, notes, and study sessions synced to your account.</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="form-grid login-grid">
+                    <label for="login-username">Username</label>
+                    <input id="login-username" name="login-username" type="text" placeholder="alex" required />
+                    <label for="login-password">Password</label>
+                    <input id="login-password" name="login-password" type="password" placeholder="password" required />
+                </div>
+
+                <div class="actions auth-actions">
+                    <button type="submit" class="primary">Login</button>
+                    <button type="button" class="secondary" id="create-account">Create account</button>
+                </div>
+
+                <p class="login-message" id="login-message"></p>
+            </form>
+        </section>
+
+        <main id="app-container" class="app-shell hidden">
+            <section class="panel app-header">
+                <div class="header-copy">
+                    <p class="eyebrow">2study</p>
+                    <h1>Study smarter, not harder.</h1>
+                    <p class="muted">Logged in as <strong id="user-name-label">Learner</strong>. Keep your progress, notes, and focus in one clean dashboard.</p>
+                    <div id="user-greeting" class="user-greeting"></div>
+                </div>
+                <div class="header-actions">
+                    <div class="header-pill">Live sync</div>
+                    <div class="header-pill">Private</div>
+                    <button id="logout-button" class="secondary logout-button hidden" type="button">Logout</button>
+                </div>
+            </section>
+
+            <section class="panel overview-grid">
+                <article class="summary-card">
+                    <div class="summary-card-top">
+                        <div class="summary-icon">*</div>
+                        <div>
+                            <p class="eyebrow">Today's snapshot</p>
+                            <h2>Keep the momentum going.</h2>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <span id="stat-hours">x hours</span>
+                            <small>focus time</small>
+                        </div>
+                        <div class="stat-box">
+                            <span id="stat-projects">x projects</span>
+                            <small>active projects</small>
+                        </div>
+                        <div class="stat-box">
+                            <span id="stat-studies">x studies</span>
+                            <small>sessions logged</small>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="profile-card">
+                    <div class="profile-avatar-block">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=256&q=80" alt="Profile avatar" />
+                    </div>
+                    <div class="profile-details">
+                        <p class="eyebrow">Profile</p>
+                        <h2 id="profile-user-name">Alex Silva</h2>
+                        <p class="muted">A calm study setup inspired by nostalgic homepages and modern tools. Your dashboard will grow from here.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel task-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">New study item</p>
+                        <h2>Add something useful</h2>
+                    </div>
+                    <p class="muted">Save a new task, note, or reference and carry it into your next session.</p>
+                </div>
+
+                <form id="study-form">
+                    <div class="form-grid">
+                        <label for="title">Task</label>
+                        <input id="title" name="title" type="text" placeholder="Review algorithms chapter 4" required />
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="General">General</option>
+                            <option value="Academic">Academic</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Research">Research</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Optional details, code snippets, ideas..." rows="4"></textarea>
+                        <label for="imageUrl">Image URL</label>
+                        <input id="imageUrl" name="imageUrl" type="url" placeholder="https://..." />
+                        <label for="imageFile">Upload image</label>
+                        <input id="imageFile" name="imageFile" type="file" accept="image/*" />
+                    </div>
+
+                    <div class="image-preview hidden" id="image-preview-container">
+                        <strong>Preview</strong>
+                        <img id="image-preview" alt="Image preview" src="" />
+                    </div>
+
+                    <div class="actions form-actions">
+                        <button type="submit" class="primary">Save item</button>
+                        <button type="button" class="secondary" id="clear-form">Clear</button>
+                    </div>
+                    <p id="app-message" class="login-message"></p>
+                </form>
+            </section>
+
+            <section class="panel status-bar" aria-label="Task summary">
+                <div class="status-pill">
+                    <strong id="active-count">0</strong>
+                    Active
+                </div>
+                <div class="status-pill">
+                    <strong id="completed-count">0</strong>
+                    Completed
+                </div>
+                <div class="status-pill">
+                    <strong id="total-count">0</strong>
+                    Total
+                </div>
+            </section>
+
+            <section class="panel tasks-grid">
+                <div class="tasks-column">
+                    <div class="section-title">
+                        <h3>Active</h3>
+                        <span>What to do next</span>
+                    </div>
+                    <div id="active-list" class="task-list"></div>
+                    <div id="active-empty" class="no-items">No active items yet - add one to get started.</div>
+                </div>
+
+                <div class="tasks-column">
+                    <div class="section-title">
+                        <h3>Completed</h3>
+                        <span>History of finished work</span>
+                    </div>
+                    <div class="task-actions-top">
+                        <button id="clear-completed" type="button" class="secondary">Remove all</button>
+                        <button id="restore-all" type="button" class="secondary">Restore all</button>
+                    </div>
+                    <div id="completed-list" class="task-list"></div>
+                    <div id="completed-empty" class="no-items">No completed items yet. Finish something and it will appear here.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+const canvas = document.getElementById("canvas1");
+const ctx = canvas.getContext('2d');
+let mouseMoved = false;
+const pointer = { x: 0, y: 0 };
+const params = { pointsNumber: 5, widthFactor: .8, spring: .4, friction: .5 };
+const trail = Array.from({ length: params.pointsNumber }, () => ({ x: 0, y: 0, dx: 0, dy: 0 }));
+
+function updateMouse(eX, eY) {
+    pointer.x = eX;
+    pointer.y = eY;
+    mouseMoved = true;
+}
+
+window.addEventListener("mousemove", e => updateMouse(e.clientX, e.clientY));
+window.addEventListener("touchmove", e => updateMouse(e.targetTouches[0].clientX, e.targetTouches[0].clientY));
+window.addEventListener("resize", setupCanvas);
+
+function setupCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+function update(t) {
+    ctx.strokeStyle = "#fefae0";
+    if (!mouseMoved) {
+        pointer.x = (.5 + .3 * Math.cos(.002 * t) * (Math.sin(.005 * t))) * window.innerWidth;
+        pointer.y = (.5 + .2 * (Math.cos(.005 * t)) + .1 * Math.cos(.01 * t)) * window.innerHeight;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    trail.forEach((p, i) => {
+        const prev = i === 0 ? pointer : trail[i - 1];
+        const spring = i === 0 ? .4 * params.spring : params.spring;
+        p.dx += (prev.x - p.x) * spring;
+        p.dy += (prev.y - p.y) * spring;
+        p.dx *= params.friction;
+        p.dy *= params.friction;
+        p.x += p.dx;
+        p.y += p.dy;
+    });
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(trail[0].x, trail[0].y);
+    for (let i = 1; i < trail.length - 1; i++) {
+        const xc = .5 * (trail[i].x + trail[i + 1].x);
+        const yc = .5 * (trail[i].y + trail[i + 1].y);
+        ctx.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
+        ctx.lineWidth = params.widthFactor * (params.pointsNumber - i);
+        ctx.stroke();
+    }
+    ctx.lineTo(trail[trail.length - 1].x, trail[trail.length - 1].y);
+    ctx.stroke();
+    requestAnimationFrame(update);
+}
+
+setupCanvas();
+update(0);

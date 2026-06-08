@@ -1,0 +1,70 @@
+var html5_audiotypes = {
+  mp3: "audio/mpeg",
+  mp4: "audio/mp4",
+  ogg: "audio/ogg",
+  wav: "audio/wav",
+};
+function createsoundbite(sound) {
+  var html5audio = document.createElement("audio");
+  if (html5audio.canPlayType) {
+    for (var i = 0; i < arguments.length; i++) {
+      var sourceel = document.createElement("source");
+      sourceel.setAttribute("src", arguments[i]);
+      if (arguments[i].match(/\.(\w+)$/i))
+        sourceel.setAttribute("type", html5_audiotypes[RegExp.$1]);
+      html5audio.appendChild(sourceel);
+    }
+    html5audio.load();
+    html5audio.playclip = function () {
+      html5audio.pause();
+      html5audio.currentTime = 0;
+      html5audio.play();
+    };
+    return html5audio;
+  } else {
+    return {
+      playclip: function () {
+        throw new Error("Your browser doesn't support HTML5 audio :(");
+      },
+    };
+  }
+}
+var menubeep = createsoundbite("/sound/menubeep.wav", "/sound/menubeep.mp3");
+var menuselect = createsoundbite(
+  "/sound/menuselect.wav",
+  "/sound/menuselect.mp3",
+);
+dragElement(document.getElementById("mydiv"));
+function dragElement(elmnt) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
+  }
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}

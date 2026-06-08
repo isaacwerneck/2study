@@ -1,0 +1,81 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var widget = document.getElementById("webring-widget");
+  var errorBox = document.getElementById("webring-error");
+  var prevLink = document.getElementById("prev");
+  var nextLink = document.getElementById("next");
+  var randomLink = document.getElementById("random");
+  var websiteLink = document.getElementById("website");
+  
+
+  // Function to show the error screen
+  function showError() {
+    if (widget) widget.style.display = "none";
+    if (errorBox) errorBox.style.display = "block";
+  }
+
+  // If opened directly (not embedded), just show widget
+  if (window.top === window.self) {
+    widget.style.display = "block";
+    if (errorBox) errorBox.style.display = "none";
+    return;
+  }
+
+  // Get slug from query string
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get("site");
+
+  if (!slug) {
+    showError();
+    return;
+  }
+
+  slug = slug.trim().toLowerCase();
+
+  // Fetch the members JSON
+  fetch("/webring/webring.json")
+    .then(function (response) {
+      if (!response.ok) throw new Error("Failed to load JSON");
+      return response.json();
+    })
+    .then(function (members) {
+      // Find index of this member
+      var index = -1;
+      for (var i = 0; i < members.length; i++) {
+        if (members[i].slug.toLowerCase() === slug) {
+          index = i;
+          break;
+        }
+      }
+
+      if (index === -1) {
+        showError();
+        return;
+      }
+
+      // Valid member → show widget
+      widget.style.display = "block";
+      if (errorBox) errorBox.style.display = "none";
+
+      var currentMember = members[index];
+
+      // Set website button
+      if (websiteLink) websiteLink.href = currentMember.url;
+
+      
+      var prevIndex = (index - 1 + members.length) % members.length;
+      var nextIndex = (index + 1) % members.length;
+      var randomIndex = Math.floor(Math.random() * members.length);
+
+      if (prevLink) { prevLink.href = members[prevIndex].url; prevLink.target = "_top"; }
+      if (nextLink) { nextLink.href = members[nextIndex].url; nextLink.target = "_top"; }
+      if (randomLink) { randomLink.href = members[randomIndex].url; randomLink.target = "_top"; }
+    })
+    
+
+
+
+    .catch(function (err) {
+      console.error("Webring widget error:", err);
+      showError();
+    });
+});

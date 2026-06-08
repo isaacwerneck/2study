@@ -1,0 +1,88 @@
+// onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js (this one!), and onionring.css
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium (蒜) house, last updated 2020-11-24
+
+// === ONIONRING-VARIABLES ===
+//this file contains the stuff you edit to set up your specific webring
+
+//the full URLs of all the sites in the ring
+var sites = [
+    'https://shinyexe.neocities.org/',
+    'https://steel-type.neoskitties.org/',
+    'https://transrats.neocities.org/',
+    'https://kinesis.neocities.org/',
+    'https://enigmadreams.neocities.org/',
+    'https://twigsaretasty.neocities.org/',
+    'https://scorpion-halo.neocities.org/',
+    'https://pixilate.neocities.org/',
+    'https://corvidae.digital/',
+    'https://meowco.neocities.org/',
+    'https://oliscrabwife.neocities.org/',
+    'https://furbee.neocities.org/',
+    'https://1dkreally.neocities.org/',
+    'https://eco-shareist.neocities.org/',
+    'https://dittodan.neocities.org/',
+    'https://emocowboy.neocities.org/',
+    'https://blagi.neocities.org/',
+    'https://sylphofeons.neocities.org/',
+    'https://draggianuniverse.neocities.org/',
+    'https://leveretstar.com/',
+    'https://quesadillawizard.neocities.org/',
+    'https://thedreadedden.nekoweb.org/',
+    'https://abslimeware.neocities.org/',
+    'https://jubilifevibes.neocities.org/',
+    'https://mintchipdotcom.neocities.org/',
+    'https://8bitgalaxyhunts.neocities.org/',
+    'https://kumihimo.neocities.org/',
+    'https://south-boulevard.nekoweb.org/',
+    'https://centiskor.ch/',
+    'https://icirr.us/',
+    'https://acetrainermeg.neocities.org/',
+    'https://zoranadragon.neocities.org/',
+    'https://letsfindpokemon.info/',
+    'https://sleepycircus.neocities.org/',
+    'https://amfmradio.org/',
+    'https://www.ashido.com/kablarry/',
+    'https://riomc.cloud/',
+    'https://comedyroses.neocities.org/',
+    'https://speevtheteev.neocities.org/',
+    'https://maddycha.com/',
+    'https://labo.lysandre.me/',
+    'https://wondermap.neocities.org/',
+    'https://blueys-site.neocities.org/',
+    'https://meraki.nekoweb.org/',
+    'https://www.valycenegative.it/',
+    'https://arillscorner.nekoweb.org/',
+    'https://silversneasel.neocities.org/',
+    'https://seafare.neocities.org/',
+    'https://kitschymew.neocities.org/',
+    'https://deoxys.space/',
+    'https://marrowbites.neocities.org/',
+    'https://sirgalactica.nekoweb.org/',
+    'https://strawberrynose.neocities.org/',
+    'https://fairytale.magicalgurll.com/',
+    'https://calico.nekoweb.org/',
+    'https://tohjo.neocities.org/',
+    'https://sterkiherz.netlify.app/',
+    'https://pelmenicat.neocities.org/',
+    'https://pinkfreakbrigade.neocities.org/',
+    'https://donotdesturb.neocities.org/',
+    'https://neoposttown.neocities.org/',
+    'https://prfctpup.neocities.org/',
+];
+
+//the name of the ring
+var ringName = 'Bill’s PC';
+
+/* the unique ID of the widget. two things to note:
+ 1) make sure there are no spaces in it - use dashes or underscores if you must
+ 2) remember to change 'webringid' in the widget code you give out and all instances of '#webringid' in the css file to match this value!*/
+var ringID = 'billspc';
+
+//should the widget include a link to an index page?
+var useIndex = true;
+//the full URL of the index page. if you're not using one, you don't have to specify anything here
+var indexPage = 'https://bills-pc.neocities.org/';
+
+//should the widget include a random button?
+var useRandom = false;

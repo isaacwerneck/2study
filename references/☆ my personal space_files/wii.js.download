@@ -1,0 +1,156 @@
+let wiiRingTemplate = document.createElement("template");
+const wiiRingStyles = `<style>
+.wii-ring-container {
+  padding: 6px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border: 4px solid #d3bfbf;
+  border-radius: 8px; }
+  .wii-ring-container .wii-ring {
+    padding: 4px 4px 0; }
+  .wii-ring-container img {
+    width: 55%; }
+    .wii-ring-container img.random {
+      width: 21%; }
+  .wii-ring-container a {
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .wii-ring-container a.arrow {
+      width: 25px; }
+      .wii-ring-container a.arrow img {
+        width: 17px; }
+  .wii-ring-container .wii-ring-controls-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px; }
+    .wii-ring-container .wii-ring-controls-container .mii {
+      width: calc(100% - 50px); } 
+  .wii-ring-container #randomLink {width: 100%; }
+  .wii-ring-container.family-edition-blue {
+    background-color: #D3EBF6; }
+  .wii-ring-container.wii-mini {
+    background-color: #E70113;
+    border-color: #222; }
+    </style>`;
+class WiiRing extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({
+      mode: "open",
+    });
+    const thisSite = this.getAttribute("site");
+    const variant = this.getAttribute("variant");
+    const noMii = this.getAttribute("noMii");
+    let variantClass = "wii-ring-container";
+    if (variant === "family-edition-blue") {
+      variantClass += " family-edition-blue";
+    } else if (variant === "wii-mini") {
+      variantClass += " wii-mini";
+    }
+    let titleImg = 'wii-ring.png';
+    let prevImg = 'prev.png';
+    let nextImg = 'next.png';
+    let randomImg = 'random.png';
+    if (variant === "wii-mini") {
+      titleImg = 'wiiring-mini.png';
+      prevImg = 'prev_mini.png';
+      nextImg = 'next_mini.png';
+      randomImg = 'random_mini.png';
+    }
+    let wiiRingWithMii = `<div class="${variantClass}" part="wii-ring-container">
+      <a href="https://jeith.neocities.org/wii-ring" target="_blank" class="wii-ring">
+        <img
+          class="wii-ring"
+          src="https://jeith.neocities.org/assets/imgs/${titleImg}"
+          alt="Wii Ring"
+        />
+      </a>
+      <div class="wii-ring-controls-container">
+        <a id="prevLink" href="/#" target="_blank" class="arrow" title="Prev">
+          <img src="https://jeith.neocities.org/assets/imgs/${prevImg}" alt="Previous" />
+        </a>
+        <img
+          class="mii"
+          id="wiiRingImg"
+          src="https://jeith.neocities.org/assets/imgs/blank.png"
+          alt="jeith"
+        />
+        <a id="nextLink" href="/#" target="_blank" class="arrow" title="Next">
+          <img src="https://jeith.neocities.org/assets/imgs/${nextImg}" alt="Next" />
+        </a>
+      </div>
+      <a href="/#" target="_blank" id="randomLink" title="Random">
+        <img
+          class="random"
+          src="https://jeith.neocities.org/assets/imgs/${randomImg}"
+          alt="Random"
+        />
+      </a>
+      </div>`;
+    let wiiRingWitoutMii = `<div class="${variantClass}">
+      <a href="https://jeith.neocities.org/wii-ring" target="_blank" class="wii-ring">
+        <img
+          style="width: 60%;"
+          class="wii-ring"
+          src="https://jeith.neocities.org/assets/imgs/${titleImg}"
+          alt="Wii Ring"
+        />
+      </a>
+      <div class="wii-ring-controls-container" style="margin: 10px 0 0 0;">
+        <a id="prevLink" href="/#" target="_blank" class="arrow" title="Prev">
+          <img src="https://jeith.neocities.org/assets/imgs/${prevImg}" alt="Previous" />
+        </a>
+        <a class="mii" href="/#" target="_blank" id="randomLink" title="Random">
+          <img
+            class="random"
+            src="https://jeith.neocities.org/assets/imgs/${randomImg}"
+            alt="Random"
+          />
+        </a>
+        <a id="nextLink" href="/#" target="_blank" class="arrow" title="Next">
+          <img src="https://jeith.neocities.org/assets/imgs/${nextImg}" alt="Next" />
+        </a>
+      </div>
+      </div>`;
+    if (noMii === "true") {
+      wiiRingTemplate.innerHTML = `${wiiRingStyles}${wiiRingWitoutMii}`;
+    } else {
+      wiiRingTemplate.innerHTML = `${wiiRingStyles}${wiiRingWithMii}`;
+    }
+    this.shadowRoot.appendChild(wiiRingTemplate.content.cloneNode(true));
+    fetch("https://neocities.jeith.com/assets/miis.json")
+      .then((response) => response.json())
+      .then((sites) => {
+        let prev = this.shadowRoot.querySelector("#prevLink");
+        let random = this.shadowRoot.querySelector("#randomLink");
+        let next = this.shadowRoot.querySelector("#nextLink");
+        const matchedSiteIndex = sites.findIndex(
+          (site) => site.url === thisSite
+        );
+        if (!noMii) {
+          let miiImage = this.shadowRoot.querySelector("#wiiRingImg");
+          miiImage.setAttribute("src", `${sites[matchedSiteIndex].miiPhoto}`);
+          miiImage.setAttribute("alt", sites[matchedSiteIndex].name);
+        }
+        let prevSiteIndex = matchedSiteIndex - 1;
+        if (prevSiteIndex === -1) prevSiteIndex = sites.length - 1;
+        let nextSiteIndex = matchedSiteIndex + 1;
+        if (nextSiteIndex >= sites.length) nextSiteIndex = 0;
+        const randomSiteIndex = this.getRandomInt(0, sites.length - 1);
+        prev.setAttribute("href", sites[prevSiteIndex].url);
+        random.setAttribute("href", sites[randomSiteIndex].url);
+        next.setAttribute("href", sites[nextSiteIndex].url);
+      });
+  }
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}
+window.customElements.define("wii-ring", WiiRing);
